@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+      <app-update-nutritional
+          [nutritional]="updatedNutritional"
+          (nutritionalUpdated)= "nutritionalUpdated($event)"
+          [ajout]="ajout">
+      </app-update-nutritional>
+  </div>
+  <div class="card shadow mb-4">
+      <div class="card-body">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Nom Nutritional</th>
+                  </tr>
+              </thead>
+              <tbody *ngFor="let nutritional of nutritionals">
+                  <tr>
+                      <td>{{nutritional.idNut}}</td>
+                      <td>{{nutritional.nomNut}}</td>
+                      <td><a class="btn btn-success" (click)="updateNut(nutritional)">Editer</a></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

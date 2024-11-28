@@ -1,0 +1,16 @@
+<!-- update-nutritional.component.html -->
+
+<form (ngSubmit)="saveNutritional()">
+    <div>
+      <label>ID Nutritional</label>
+      <input type="text" [(ngModel)]="nutritional.idNut" name="IdNutritional" class="form-control w-25" readonly>
+    </div>
+    <div>
+      <label>Nom nutritional</label>
+      <input type="text" [(ngModel)]="nutritional.nomNut" name="nomNutritional" class="form-control" placeholder="Entrez un nom de nutritional...">
+    </div>
+    <button type="submit" [disabled]="!nutritional.nomNut" class="btn btn-success">
+      {{ ajout ? 'Ajouter' : 'Modifier' }}
+    </button>
+  </form>
+  

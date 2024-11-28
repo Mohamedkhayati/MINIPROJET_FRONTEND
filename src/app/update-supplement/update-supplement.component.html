@@ -1,0 +1,82 @@
+<div class="container">
+  <div>
+    <h2>Modifier un Supplement :</h2>
+  </div>
+  <form [formGroup]="myForm">
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Supplement</label>
+      <input readonly type="text" formControlName="idSupplement" [(ngModel)]="currentSupplement.idSupplement" name="idSupplement"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['idSupplement'].hasError('required') && myForm.controls['idSupplement'].touched"
+      class="text-danger">
+      ID Supplement est obligatoire
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Supplement</label>
+      <input type="text" formControlName="nomSupplement" [(ngModel)]="currentSupplement.nomSupplement" name="nomSupplement"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['nomSupplement'].hasError('required') && myForm.controls['nomSupplement'].touched"
+      class="text-danger">
+      Nom de Supplement est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['nomSupplement'].hasError('minlength') && myForm.controls['nomSupplement'].touched"
+      class="text-danger">
+      Le nom de Supplement doit contenir au moins 5 caractères
+    </span>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix Supplement</label>
+      <input type="number" formControlName="prixSupplement" [(ngModel)]="currentSupplement.prixSupplement" name="prixSupplement"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['prixSupplement'].hasError('required') && myForm.controls['prixSupplement'].touched"
+      class="text-danger">
+      Le prix de Supplement est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['prixSupplement'].hasError('min') && myForm.controls['prixSupplement'].touched"
+      class="text-danger">
+      Le prix de Supplement doit être supérieur ou égal à 0
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Dosage Supplement</label>
+      <input type="text" formControlName="dosageSupplement" [(ngModel)]="currentSupplement.dosageSupplement" name="dosageSupplement"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['dosageSupplement'].hasError('required') && myForm.controls['dosageSupplement'].touched"
+      class="text-danger">
+      Le dosage de Supplement est obligatoire
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" formControlName="datedeSortie" [ngModel]="currentSupplement.dateCreation | date: 'yyyy-MM-dd'"
+        (ngModelChange)="currentSupplement.dateCreation = $event" name="datedeSortie" class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['datedeSortie'].hasError('required') && myForm.controls['datedeSortie'].touched"
+      class="text-danger">
+      La date de création de Supplement est obligatoire
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nutritional</label>
+      <select class="form-control form-control-lg" id="idNutritional" name="idNutritional" formControlName="nutritional"
+        [(ngModel)]="updatedNutritionalId">
+        <option *ngFor="let nutritional of nutritionals" [value]="nutritional.idNut">
+          {{nutritional.nomNut}}
+        </option>
+      </select>
+    </div>
+    <span *ngIf="myForm.controls['nutritional'].hasError('required') && myForm.controls['nutritional'].touched"
+      class="text-danger">
+      Le Nutritional de Supplement est obligatoire
+    </span>
+
+    <div class="mt-2">
+      <button type="submit" (click)="updateSupplement()" class="btn btn-success">Modifier</button>
+    </div>
+  </form>
+</div>
